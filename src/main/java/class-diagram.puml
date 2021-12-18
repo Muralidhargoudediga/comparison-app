@@ -1,0 +1,88 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class RecommenderService {
+    CarRepository carRepository
+    getRecommendations()
+}
+
+class RecommendationController {
+    RecommenderService recommenderService
+    getRecommendations()
+}
+
+RecommendationController o-- RecommenderService
+
+class Car {
+     Integer id
+     String name
+     String type
+}
+
+class CarFeature {
+    Integer carId
+    Map<Integer, String> featureValueMap
+}
+
+class ComparableFeature {
+    String featureName
+    boolean isDifferent
+    Map<Integer, String> values
+}
+
+class ComparableFeatureGroup {
+    List<ComparableFeature> featureList
+    FeatureCategory featureCategory
+}
+
+ComparableFeatureGroup o-- ComparableFeature
+
+class ComparisonRequest {
+    List<Integer> carIds
+}
+
+class ComparisonResponse {
+    Map<Integer, String> carsDetails
+    List<ComparableFeatureGroup> comparableFeatureList
+}
+
+ComparisonResponse o-- ComparableFeatureGroup
+
+class Feature {
+    Integer id
+    String featureName
+    FeatureCategory featureCategory
+}
+
+class CarRepository {
+    getRecommendations()
+}
+
+RecommenderService o-- CarRepository
+
+class FeatureRepository {
+    getFeatures()
+}
+
+class ComparisonController {
+    ComparisonService comparisonService
+}
+
+class ComparisonService {
+    FeatureRepository featureRepository
+    RecommenderService recommenderService
+    CarRepository carRepository
+}
+
+ComparisonController o-- ComparisonService
+ComparisonService o-- FeatureRepository
+ComparisonService o-- CarRepository
+
+
+enum FeatureCategory {
+GENERAL
+ENGINE
+COST
+}
+
+@enduml

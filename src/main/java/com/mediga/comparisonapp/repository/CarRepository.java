@@ -2,11 +2,7 @@ package com.mediga.comparisonapp.repository;
 
 import com.mediga.comparisonapp.model.Car;
 import com.mediga.comparisonapp.model.CarFeature;
-import com.mediga.comparisonapp.model.Feature;
-import com.mediga.comparisonapp.model.FeatureValueWrapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
